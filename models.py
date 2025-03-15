@@ -47,8 +47,6 @@ class ProductoDepartamento(db.Model):
     producto_id = db.Column(db.Integer, db.ForeignKey('producto.id'), nullable=False)
     departamento_id = db.Column(db.Integer, db.ForeignKey('departamento.id'), nullable=False)
     fecha_asignacion = db.Column(db.DateTime, default=datetime.utcnow)
-    activo = db.Column(db.Boolean, default=True)
-
     producto = db.relationship('Producto', backref=db.backref('departamentos', lazy=True))
     departamento = db.relationship('Departamento', backref=db.backref('productos', lazy=True))
 

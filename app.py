@@ -87,7 +87,8 @@ def renovar_producto():
 @app.route('/productos/consultar')
 def consultar_productos():
     productos = Producto.query.all()
-    return render_template('productos/consultar_productos.html', productos=productos)
+    asignaciones = ProductoDepartamento.query.all()
+    return render_template('productos/consultar_productos.html', productos=productos, asignaciones=asignaciones)
 
 # ----- RUTAS PARA DEPARTAMENTOS -----
 
@@ -174,7 +175,6 @@ def alta_producto_depto():
         asignacion_existente = ProductoDepartamento.query.filter_by(
             producto_id=producto_id,
             departamento_id=departamento_id,
-            activo=True
         ).first()
 
         if asignacion_existente:
@@ -218,7 +218,7 @@ def baja_producto_depto():
             flash(f'Error al retirar producto del departamento: {str(e)}', 'danger')
 
     # Obtener todas las asignaciones activas
-    asignaciones = ProductoDepartamento.query.filter_by(activo=True).all()
+    asignaciones = ProductoDepartamento.query.all()
     return render_template('asignaciones/baja_producto_depto.html', asignaciones=asignaciones)
 
 # ----- RUTAS PARA PRECIOS -----
