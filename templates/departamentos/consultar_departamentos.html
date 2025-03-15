@@ -1,0 +1,85 @@
+{% extends "index.html" %} {% block title %}Consultar Departamentos{% endblock
+%} {% block content %}
+<div class="card">
+    <div
+        class="card-header bg-info text-white d-flex justify-content-between align-items-center"
+    >
+        <h4 class="mb-0">Consulta de Departamentos</h4>
+        <a href="{{ url_for('alta_departamento') }}" class="btn btn-light">
+            <i class="bi bi-plus-circle"></i> Nuevo Departamento
+        </a>
+    </div>
+    <div class="card-body">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show">
+            {{ message }}
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+            ></button>
+        </div>
+        {% endfor %} {% endif %} {% endwith %}
+
+        <div class="table-responsive">
+            {% if departamentos %}
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Responsable</th>
+                        <th>Fecha de Creación</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for departamento in departamentos %}
+                    <tr>
+                        <td>{{ departamento.codigo }}</td>
+                        <td>{{ departamento.nombre }}</td>
+                        <td>{{ departamento.responsable }}</td>
+                        <td>
+                            {{ departamento.fecha_creacion.strftime('%d/%m/%Y') }}
+                        </td>
+                        <td>
+                            {% if departamento.activo %}
+                            <span class="badge bg-success">Activo</span>
+                            {% else %}
+                            <span class="badge bg-danger">Inactivo</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a
+                                    href="{{ url_for('renovar_departamento', departamento_id=departamento.id) }}"
+                                    class="btn btn-sm btn-outline-primary"
+                                >
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a
+                                    href="{{ url_for('baja_departamento') }}"
+                                    class="btn btn-sm btn-outline-warning"
+                                >
+                                    <i
+                                        class="bi bi-trash"
+                                        value="{{ departamento.if }}"
+                                    ></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="alert alert-info">
+                No hay departamentos registrados en el sistema.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

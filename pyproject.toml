@@ -1,7 +1,7 @@
 [project]
-name = "entregas"
+name = "project-1"
 version = "0.1.0"
-description = "Add your description here"
+description = "Proyecto 1 de la UEA de Metodologías Agiles de Desarrollo de Software"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [

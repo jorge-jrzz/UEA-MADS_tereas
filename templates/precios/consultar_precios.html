@@ -1,0 +1,74 @@
+{% extends "index.html" %} {% block title %}Consulta de Precios por
+Departamento{% endblock %} {% block content %}
+<div class="card">
+    <div class="card-header bg-info text-white">
+        <h4 class="mb-0">Consulta de Precios por Departamento</h4>
+    </div>
+    <div class="card-body">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %} {% endif %} {% endwith %} {% if departamentos %}
+        <form method="GET" action="{{ url_for('consultar_precios_productos_depto') }}" class="mb-4">
+            <div class="row align-items-end">
+                <div class="col-md-6 mb-3">
+                    <label for="departamento_id" class="form-label">Seleccione un departamento</label>
+                    <select class="form-select" id="departamento_id" name="departamento_id" required>
+                        <option value="">-- Seleccione un departamento --</option>
+                        {% for departamento in departamentos %}
+                        <option value="{{ departamento.id }}" {% if departamento_actual==departamento.id %} selected {%
+                            endif %}>
+                            {{ departamento.nombre }}
+                        </option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <button type="submit" class="btn btn-primary w-100">Consultar</button>
+                </div>
+            </div>
+        </form>
+
+        {% if departamento_actual %} {% if productos %}
+        <h5 class="mb-3">Precios de productos en el departamento seleccionado</h5>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in productos %}
+                    <tr>
+                        <td>{{ item.producto.codigo }}</td>
+                        <td>{{ item.producto.nombre }}</td>
+                        <td>
+                            {% if item.precio != 'No asignado' %} ${{ item.precio }} {% else %}
+                            <span class="text-danger">{{ item.precio }}</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            No hay productos asignados al departamento seleccionado.
+        </div>
+        {% endif %} {% endif %} {% else %}
+        <div class="alert alert-warning">
+            No hay departamentos registrados en el sistema.
+        </div>
+        <a href="{{ url_for('alta_departamento') }}" class="btn btn-primary">Agregar Departamento</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

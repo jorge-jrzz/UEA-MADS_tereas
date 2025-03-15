@@ -1,0 +1,91 @@
+{% extends "index.html" %} {% block title %}Asignar Producto a Departamento{%
+endblock %} {% block content %}
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Asignar Producto a Departamento</h4>
+    </div>
+    <div class="card-body">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show">
+            {{ message }}
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+            ></button>
+        </div>
+        {% endfor %} {% endif %} {% endwith %} {% if productos and departamentos
+        %}
+        <form method="POST" action="{{ url_for('alta_producto_depto') }}">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="producto_id" class="form-label">Producto</label>
+                    <select
+                        class="form-select"
+                        id="producto_id"
+                        name="producto_id"
+                        required
+                    >
+                        <option value="">-- Seleccione un producto --</option>
+                        {% for producto in productos %}
+                        <option value="{{ producto.id }}">
+                            {{ producto.codigo }} - {{ producto.nombre }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="departamento_id" class="form-label"
+                        >Departamento</label
+                    >
+                    <select
+                        class="form-select"
+                        id="departamento_id"
+                        name="departamento_id"
+                        required
+                    >
+                        <option value="">
+                            -- Seleccione un departamento --
+                        </option>
+                        {% for departamento in departamentos %}
+                        <option value="{{ departamento.id }}">
+                            {{ departamento.codigo }} - {{ departamento.nombre
+                            }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                <button type="submit" class="btn btn-primary">
+                    Asignar Producto
+                </button>
+            </div>
+        </form>
+        {% else %}
+        <div class="alert alert-warning">
+            {% if not productos %}
+            <p>No hay productos activos disponibles para asignar.</p>
+            <a
+                href="{{ url_for('alta_producto') }}"
+                class="btn btn-sm btn-primary"
+                >Agregar Producto</a
+            >
+            {% endif %} {% if not departamentos %}
+            <p>
+                No hay departamentos activos disponibles para asignar productos.
+            </p>
+            <a
+                href="{{ url_for('alta_departamento') }}"
+                class="btn btn-sm btn-primary"
+                >Agregar Departamento</a
+            >
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

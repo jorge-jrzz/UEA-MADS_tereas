@@ -1,0 +1,49 @@
+{% extends "index.html" %} {% block title %}Asignar Precio a Producto{% endblock
+%} {% block content %}
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Asignar Precio a Producto</h4>
+    </div>
+    <div class="card-body">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %} {% endif %} {% endwith %} {% if productos %}
+        <form method="POST" action="{{ url_for('asignar_precio_producto') }}">
+            <div class="mb-3">
+                <label for="producto_id" class="form-label">Seleccione un producto</label>
+                <select class="form-select" id="producto_id" name="producto_id" required>
+                    <option value="">-- Seleccione un producto --</option>
+                    {% for producto in productos %}
+                    <option value="{{ producto.id }}">
+                        {{ producto.codigo }} - {{ producto.nombre }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="valor" class="form-label">Precio</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" class="form-control" id="valor" name="valor" step="0.01" min="0.01" required />
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{{ url_for('consultar_precios_productos_depto') }}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Asignar Precio</button>
+            </div>
+        </form>
+        {% else %}
+        <div class="alert alert-warning">
+            No hay productos activos disponibles para asignar precios.
+        </div>
+        <a href="{{ url_for('alta_producto') }}" class="btn btn-primary">Agregar Producto</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

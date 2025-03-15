@@ -1,0 +1,68 @@
+{% extends "index.html" %} {% block title %}Baja de Producto en Departamento{%
+endblock %} {% block content %}
+<div class="card">
+    <div class="card-header bg-warning">
+        <h4 class="mb-0">Baja de Producto en Departamento</h4>
+    </div>
+    <div class="card-body">
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show">
+            {{ message }}
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+            ></button>
+        </div>
+        {% endfor %} {% endif %} {% endwith %} {% if asignaciones %}
+        <form method="POST" action="{{ url_for('baja_producto_depto') }}">
+            <div class="mb-3">
+                <label for="asignacion_id" class="form-label"
+                    >Seleccione la asignación a eliminar</label
+                >
+                <select
+                    class="form-select"
+                    id="asignacion_id"
+                    name="asignacion_id"
+                    required
+                >
+                    <option value="">-- Seleccione una asignación --</option>
+                    {% for asignacion in asignaciones %}
+                    <option value="{{ asignacion.id }}">
+                        {{ asignacion.producto.nombre }} en {{
+                        asignacion.departamento.nombre }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-check mb-3">
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="confirmacion"
+                    required
+                />
+                <label class="form-check-label" for="confirmacion">
+                    Confirmo que deseo eliminar esta asignación
+                </label>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="submit" class="btn btn-warning">
+                    Eliminar Asignación
+                </button>
+            </div>
+        </form>
+        {% else %}
+        <div class="alert alert-info">
+            No hay asignaciones de productos a departamentos.
+        </div>
+        <a href="{{ url_for('alta_producto_depto') }}" class="btn btn-primary"
+            >Crear Asignación</a
+        >
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

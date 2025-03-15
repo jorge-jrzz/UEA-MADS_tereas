@@ -1,0 +1,96 @@
+{% extends "index.html" %} 
+{% block content %}
+<div class="card">
+    <div class="card-header bg-warning">
+        <h4 class="mb-0">Baja de Producto</h4>
+    </div>
+    <div class="card-body">
+        {% with messages = get_flashed_messages(with_categories=true) %} 
+        {% if messages %} 
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %} 
+        {% endif %} 
+        {% endwith %} 
+        
+        {% if productos %}
+        <form id="formEliminar" method="POST" action="{{ url_for('baja_producto') }}">
+            <div class="mb-3">
+                <label for="producto_id" class="form-label">Seleccione el producto a dar de baja</label>
+                <select class="form-select" id="producto_id" name="producto_id" required>
+                    <option value="">-- Seleccione un producto --</option>
+                    {% for producto in productos %}
+                    <option value="{{ producto.id }}" data-nombre="{{ producto.nombre }}">
+                        {{ producto.codigo }} - {{ producto.nombre }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="{{ url_for('consultar_productos') }}" class="btn btn-secondary">
+                    Cancelar
+                </a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+                    Eliminar Producto
+                </button>
+            </div>
+        </form>
+
+        {% else %}
+        <div class="alert alert-info">
+            No hay productos disponibles en el sistema.
+        </div>
+        <a href="{{ url_for('alta_producto') }}" class="btn btn-primary">Agregar Producto</a>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Modal de Confirmación -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas eliminar el producto <strong id="productoNombre"></strong>?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-danger" id="confirmDeleteBtn">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const confirmDeleteModal = document.getElementById("confirmDeleteModal");
+    const productoSelect = document.getElementById("producto_id");
+    const productoNombre = document.getElementById("productoNombre");
+    const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+    const formEliminar = document.getElementById("formEliminar");
+
+    // Antes de mostrar el modal, actualizar el nombre del producto
+    confirmDeleteModal.addEventListener("show.bs.modal", function () {
+        const selectedOption = productoSelect.options[productoSelect.selectedIndex];
+        if (selectedOption.value) {
+            productoNombre.textContent = selectedOption.getAttribute("data-nombre");
+        } else {
+            productoNombre.textContent = "desconocido";
+        }
+    });
+
+    // Al hacer clic en "Eliminar", enviar el formulario
+    confirmDeleteBtn.addEventListener("click", function () {
+        formEliminar.submit();
+    });
+});
+</script>
+
+{% endblock %}

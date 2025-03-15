@@ -1,0 +1,117 @@
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #212529;
+    padding-top: 20px;
+    color: white;
+    overflow-y: auto;
+}
+.link-to-home:active,
+.link-to-home:link,
+.link-to-home:visited {
+    text-decoration: none;
+    color: white;
+}
+.main-content {
+    margin-left: 280px;
+    padding: 20px;
+}
+.category-button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 12px 15px;
+    background-color: #343a40;
+    color: white;
+    border: none;
+    border-left: 4px solid transparent;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+    position: relative;
+}
+.category-button:hover {
+    background-color: #2c3136;
+    color: white;
+    border-left-color: #0d6efd;
+}
+.category-button.active {
+    background-color: #2c3136;
+    color: white;
+    border-left-color: #0d6efd;
+}
+.category-button i.toggle-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s;
+}
+.category-button.active i.toggle-icon {
+    transform: translateY(-50%) rotate(180deg);
+}
+.category-menu {
+    display: none;
+    padding-left: 0;
+    list-style: none;
+    margin-bottom: 15px;
+}
+.category-menu.show {
+    display: block;
+}
+.menu-item {
+    padding: 8px 15px 8px 35px;
+}
+.menu-item a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+.menu-item a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+.menu-item a.active {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.gif-init {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.gif-init img {
+    width: 375px;
+    height: auto;
+}
+
+.autor {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding-bottom: 10px;
+    }
+    .main-content {
+        margin-left: 0;
+    }
+}

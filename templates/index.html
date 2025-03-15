@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %}Sistema de Gestión{% endblock %}</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+        />
+        <link rel="stylesheet" href="./../static/styles.css" />
+        <link rel="shortcut icon" type="image/png" href="static/store.png"> 
+    </head>
+    <body>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="text-center mb-4">
+                <a class="link-to-home" href="{{ url_for('index') }}">
+                    <h3>Sistema de Gestión</h3>
+                </a>
+            </div>
+
+            <!-- Sección Productos -->
+            <button class="category-button" id="btn-productos">
+                <i class="bi bi-box me-2"></i> Productos
+                <i class="bi bi-chevron-down toggle-icon"></i>
+            </button>
+            <ul class="category-menu" id="menu-productos">
+                <li class="menu-item">
+                    <a href="{{ url_for('alta_producto') }}">
+                        <i class="bi bi-plus-circle me-2"></i> Alta de producto
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('baja_producto') }}">
+                        <i class="bi bi-dash-circle me-2"></i> Baja de producto
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('consultar_productos') }}">
+                        <i class="bi bi-search me-2"></i> Consultar productos
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Sección Departamentos -->
+            <button class="category-button" id="btn-departamentos">
+                <i class="bi bi-building me-2"></i> Departamentos
+                <i class="bi bi-chevron-down toggle-icon"></i>
+            </button>
+            <ul class="category-menu" id="menu-departamentos">
+                <li class="menu-item">
+                    <a href="{{ url_for('alta_departamento') }}">
+                        <i class="bi bi-plus-circle me-2"></i> Alta de
+                        departamento
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('baja_departamento') }}">
+                        <i class="bi bi-dash-circle me-2"></i> Baja de
+                        departamento
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('consultar_departamentos') }}">
+                        <i class="bi bi-search me-2"></i> Consultar
+                        departamentos
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Sección Asignaciones -->
+            <button class="category-button" id="btn-asignaciones">
+                <i class="bi bi-link-45deg me-2"></i> Asignaciones
+                <i class="bi bi-chevron-down toggle-icon"></i>
+            </button>
+            <ul class="category-menu" id="menu-asignaciones">
+                <li class="menu-item">
+                    <a href="{{ url_for('alta_producto_depto') }}">
+                        <i class="bi bi-box-arrow-in-down me-2"></i> Alta de
+                        producto en depto
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('baja_producto_depto') }}">
+                        <i class="bi bi-box-arrow-in-up me-2"></i> Baja de
+                        producto en depto
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Sección Precios -->
+            <button class="category-button" id="btn-precios">
+                <i class="bi bi-currency-dollar me-2"></i> Precios
+                <i class="bi bi-chevron-down toggle-icon"></i>
+            </button>
+            <ul class="category-menu" id="menu-precios">
+                <li class="menu-item">
+                    <a
+                        href="{{ url_for('consultar_precios_productos_depto') }}"
+                    >
+                        <i class="bi bi-cash-stack me-2"></i> Consultar precios
+                        por depto
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ url_for('asignar_precio_producto') }}">
+                        <i class="bi bi-tag me-2"></i> Asignar precio a producto
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        {% block content %}
+                        <div class="row">
+                            <div class="col-12 mb-4">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h2 class="card-title">
+                                            Bienvenido al Sistema de Gestión
+                                        </h2>
+                                        <p class="card-text">
+                                            Utilice el menú lateral para acceder
+                                            a las diferentes funcionalidades del
+                                            sistema.
+                                        </p>
+                                        <p>
+                                            También puede hacer clic en todo momento en <strong><I>Sistema de Gestión</I></strong> (esquina superior izquierda) para regresar a esta página.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gif-init">
+                            <img
+                                src="{{ url_for('static', filename='shopping_car.gif') }}"
+                                alt="Carrito de compras"
+                            />
+                        </div>
+                        <div class="gif-init">
+                            <h6 class="autor">
+                                Desarrollado por: 
+                                <a
+                                    href="https://www.instagram.com/jorgejrzz/"
+                                    target="_blank"
+                                >Jorge Ángel Júarez Vázquez</a>
+                            </h6>
+                        </div>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="./../static/animations.js"></script>
+        {% block extra_js %}{% endblock %}
+    </body>
+</html>
