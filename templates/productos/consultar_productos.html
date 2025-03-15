@@ -91,17 +91,8 @@
     </div>
 </div>
 
+<script src="{{ url_for('static', filename='modal.js') }}"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var confirmDeleteModal = document.getElementById("confirmDeleteModal");
-        confirmDeleteModal.addEventListener("show.bs.modal", function (event) {
-            var button = event.relatedTarget;
-            var productId = button.getAttribute("data-id");
-            var productName = button.getAttribute("data-nombre");
-
-            document.getElementById("productoNombre").textContent = productName;
-            document.getElementById("productoId").value = productId;
-        });
-    });
+    setupDeleteModal("confirmDeleteModal", "productoNombre", "productoId");
 </script>
 {% endblock %}

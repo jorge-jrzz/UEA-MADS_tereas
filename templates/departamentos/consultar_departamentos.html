@@ -1,9 +1,6 @@
-{% extends "index.html" %} {% block title %}Consultar Departamentos{% endblock
-%} {% block content %}
+{% extends "index.html" %} {% block title %}Consultar Departamentos{% endblock %} {% block content %}
 <div class="card">
-    <div
-        class="card-header bg-info text-white d-flex justify-content-between align-items-center"
-    >
+    <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
         <h4 class="mb-0">Consulta de Departamentos</h4>
         <a href="{{ url_for('alta_departamento') }}" class="btn btn-light">
             <i class="bi bi-plus-circle"></i> Nuevo Departamento
@@ -14,11 +11,7 @@
         messages %} {% for category, message in messages %}
         <div class="alert alert-{{ category }} alert-dismissible fade show">
             {{ message }}
-            <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="alert"
-            ></button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
         {% endfor %} {% endif %} {% endwith %}
 
@@ -53,21 +46,15 @@
                         </td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a
-                                    href="{{ url_for('renovar_departamento', departamento_id=departamento.id) }}"
-                                    class="btn btn-sm btn-outline-primary"
-                                >
+                                <a href="{{ url_for('renovar_departamento', departamento_id=departamento.id) }}"
+                                    class="btn btn-sm btn-outline-primary">
                                     <i class="bi bi-eye"></i>
                                 </a>
-                                <a
-                                    href="{{ url_for('baja_departamento') }}"
-                                    class="btn btn-sm btn-outline-warning"
-                                >
-                                    <i
-                                        class="bi bi-trash"
-                                        value="{{ departamento.if }}"
-                                    ></i>
-                                </a>
+                                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                    data-bs-target="#confirmDeleteModal" data-id="{{ departamento.id }}"
+                                    data-nombre="{{ departamento.nombre }}">
+                                    <i class="bi bi-trash"></i>
+                                </button>
                             </div>
                         </td>
                     </tr>
@@ -82,4 +69,32 @@
         </div>
     </div>
 </div>
+
+<!-- Modal de Confirmación -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que deseas eliminar el departamento <strong id="departamentoNombre"></strong>?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <form id="deleteForm" method="POST" action="{{ url_for('baja_departamento') }}">
+                    <input type="hidden" name="departamento_id" id="departamentoId">
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='modal.js') }}"></script>
+<script>
+    setupDeleteModal("confirmDeleteModal", "departamentoNombre", "departamentoId");
+</script>
 {% endblock %}
