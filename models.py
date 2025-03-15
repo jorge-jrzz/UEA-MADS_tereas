@@ -57,8 +57,7 @@ class Precio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     producto_id = db.Column(db.Integer, db.ForeignKey('producto.id'), nullable=False)
     valor = db.Column(db.Float, nullable=False)
-    fecha_asignacion = db.Column(db.DateTime, default=datetime.utcnow)
-    activo = db.Column(db.Boolean, default=True)
+    fecha_asignacion = db.Column(db.DateTime, default=datetime.now())
 
     producto = db.relationship('Producto', backref=db.backref('precios', lazy=True))
 

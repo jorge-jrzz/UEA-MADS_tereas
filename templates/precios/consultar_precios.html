@@ -19,8 +19,10 @@ Departamento{% endblock %} {% block content %}
                     <select class="form-select" id="departamento_id" name="departamento_id" required>
                         <option value="">-- Seleccione un departamento --</option>
                         {% for departamento in departamentos %}
-                        <option value="{{ departamento.id }}" {% if departamento_actual==departamento.id %} selected {%
-                            endif %}>
+                        <option value="{{ departamento.id }}" 
+                            {% if departamento_actual==departamento.id %} 
+                                selected 
+                            {% endif %}>
                             {{ departamento.nombre }}
                         </option>
                         {% endfor %}
@@ -41,6 +43,7 @@ Departamento{% endblock %} {% block content %}
                     <tr>
                         <th>Código</th>
                         <th>Producto</th>
+                        <th>Departamento</th>
                         <th>Precio</th>
                     </tr>
                 </thead>
@@ -49,6 +52,9 @@ Departamento{% endblock %} {% block content %}
                     <tr>
                         <td>{{ item.producto.codigo }}</td>
                         <td>{{ item.producto.nombre }}</td>
+                        <td>
+                            {{ item.departamento.nombre }}
+                        </td>
                         <td>
                             {% if item.precio != 'No asignado' %} ${{ item.precio }} {% else %}
                             <span class="text-danger">{{ item.precio }}</span>

@@ -174,11 +174,10 @@ def alta_producto_depto():
         # Verificar si la asignación ya existe
         asignacion_existente = ProductoDepartamento.query.filter_by(
             producto_id=producto_id,
-            departamento_id=departamento_id,
         ).first()
 
         if asignacion_existente:
-            flash('El producto ya está asignado a este departamento', 'warning')
+            flash('El producto ya está asignado', 'warning')
             return redirect(url_for('alta_producto_depto'))
 
         # Crear nueva asignación
@@ -205,13 +204,12 @@ def alta_producto_depto():
 def baja_producto_depto():
     if request.method == 'POST':
         asignacion_id = request.form['asignacion_id']
-
         asignacion = ProductoDepartamento.query.get_or_404(asignacion_id)
-        asignacion.activo = False
 
         try:
-            db.session.commit()
+            db.session.delete(asignacion)
             flash('Producto retirado del departamento correctamente', 'success')
+            db.session.commit()
             return redirect(url_for('consultar_productos'))
         except Exception as e:
             db.session.rollback()
@@ -234,18 +232,17 @@ def consultar_precios_productos_depto():
         # Obtener productos del departamento seleccionado
         asignaciones = ProductoDepartamento.query.filter_by(
             departamento_id=departamento_id,
-            activo=True
         ).all()
 
         for asignacion in asignaciones:
             # Obtener el precio más reciente para cada producto
             precio = Precio.query.filter_by(
                 producto_id=asignacion.producto_id,
-                activo=True
             ).order_by(Precio.fecha_asignacion.desc()).first()
 
             productos_con_precios.append({
                 'producto': asignacion.producto,
+                'departamento': Departamento.query.get(asignacion.departamento_id),
                 'precio': precio.valor if precio else 'No asignado'
             })
 
@@ -259,11 +256,6 @@ def asignar_precio_producto():
     if request.method == 'POST':
         producto_id = request.form['producto_id']
         valor = float(request.form['valor'])
-
-        # Desactivar precio anterior si existe
-        precios_anteriores = Precio.query.filter_by(producto_id=producto_id, activo=True).all()
-        for precio in precios_anteriores:
-            precio.activo = False
 
         # Crear nuevo precio
         nuevo_precio = Precio(
@@ -281,6 +273,7 @@ def asignar_precio_producto():
             flash(f'Error al asignar precio: {str(e)}', 'danger')
 
     productos = Producto.query.filter_by(activo=True).all()
+    asignaciones = ProductoDepartamento.query.all()
     return render_template('precios/asignar_precio.html', productos=productos)
 
 # Iniciar la aplicación

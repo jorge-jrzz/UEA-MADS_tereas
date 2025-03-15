@@ -15,7 +15,7 @@
         {% endfor %} {% endif %} {% endwith %}
 
         <div class="table-responsive">
-            {% if productos and asignaciones %}
+            {% if productos %}
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -36,9 +36,17 @@
                             {{ producto.fecha_creacion.strftime('%d/%m/%Y') }}
                         </td>
                         <td>
-                            {% for asignacion in asignaciones if asignacion.producto_id == producto.id %}
-                                {{ asignacion.departamento.nombre }}{% if not loop.last %}, {% endif %}
-                            {% endfor %}
+                            {% if asignaciones %}
+                                {% for asignacion in asignaciones %}
+                                    {% if asignacion.producto_id == producto.id %}
+                                        {{ asignacion.departamento.nombre }}{% if not loop.last %}, {% endif %}
+                                    {% else %}
+                                        ---
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                            ---
+                            {% endif %}
                         </td>
                         <td>
                             {% if producto.activo %}
