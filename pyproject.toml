@@ -8,3 +8,8 @@ dependencies = [
     "flask>=3.1.0",
     "flask-sqlalchemy>=3.1.1",
 ]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+]
