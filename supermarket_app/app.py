@@ -62,10 +62,7 @@ def baja_producto():
         except Exception as e:
             db.session.rollback()
             flash(f'Error al eliminar el producto: {str(e)}', 'danger')
-
-    # Obtener todos los productos sin filtrar por estado activo
-    productos = Producto.query.all()
-    return render_template('productos/baja_producto.html', productos=productos)
+            return redirect(url_for('consultar_productos'))
 
 @app.route('/productos/renovar', methods=['GET', 'POST'])
 def renovar_producto():
