@@ -1,0 +1,15 @@
+[project]
+name = "parental-control"
+version = "0.1.0"
+description = "A parental control application"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "icoextract>=0.1.6",
+    "pillow>=11.1.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+]

@@ -1,0 +1,490 @@
+[
+    {
+        "name": "Adobe Acrobat (64-bit)",
+        "publisher": "Adobe",
+        "version": "25.001.20435",
+        "install_location": "C:\\Program Files\\Adobe\\Acrobat DC\\",
+        "icon": "D:\\GitHub\\parental-control\\icons\\AdobeLogo.ico",
+        "source": "External"
+    },
+    {
+        "name": "AppleInc.iCloud",
+        "publisher": "CN=5BD5593D-A41B-4F89-884E-B4F3E0FBAA75",
+        "version": "15.3.146.0",
+        "install_location": "C:\\Program Files\\WindowsApps\\AppleInc.iCloud_15.3.146.0_x64__nzyj5cx40ttqa",
+        "icon": "D:\\GitHub\\parental-control\\icons\\BalloonWarning.ico",
+        "source": "Microsoft Store"
+    },
+    {
+        "name": "Brave",
+        "publisher": "Los creadores de Brave",
+        "version": "134.1.76.82",
+        "install_location": "C:\\Users\\jorge\\AppData\\Local\\BraveSoftware\\Brave-Browser\\Application",
+        "icon": "D:\\GitHub\\parental-control\\icons\\brave.ico",
+        "source": "External"
+    },
+    {
+        "name": "Canva",
+        "publisher": "Canva Pty Ltd",
+        "version": "1.106.0",
+        "install_location": "",
+        "icon": "D:\\GitHub\\parental-control\\icons\\Canva.ico",
+        "source": "External"
+    },
+    {
+        "name": "Clipchamp.Clipchamp",
+        "publisher": "CN=33F0F141-36F3-4EC2-A77D-51B53D0BA0E4",
+        "version": "4.1.10320.0",
+        "install_location": "C:\\Program Files\\WindowsApps\\Clipchamp.Clipchamp_4.1.10320.0_x64__yxz26nhyzhsrt",
+        "icon": "D:\\GitHub\\parental-control\\icons\\Clipchamp.ico",
+        "source": "Microsoft Store"
+    },
+    {
+        "name": "CMake",
+        "publisher": "Kitware",
+        "version": "3.31.6",
+        "install_location": "C:\\Program Files\\CMake\\",
+        "icon": "D:\\GitHub\\parental-control\\icons\\cmake-gui.ico",
+        "source": "External"
+    },
+    {
+        "name": "Discord",
+        "publisher": "Discord Inc.",
+        "version": "1.0.9175",
+        "install_location": "C:\\Users\\jorge\\AppData\\Local\\Discord",
+        "icon": "D:\\GitHub\\parental-control\\icons\\app.ico",
+        "source": "External"
+    },
+    {
+        "name": "Docker Desktop",
+        "publisher": "Docker Inc.",
+        "version": "4.39.0",
+        "install_location": "C:\\Program Files\\Docker\\Docker",
+        "icon": "D:\\GitHub\\parental-control\\icons\\Docker Desktop Installer.ico",
+        "source": "External"
+    },
+    {
+        "name": "Figma",
+        "publisher": "Figma, Inc.",
+        "version": "125.2.3",
+        "install_location": "C:\\Users\\jorge\\AppData\\Local\\Figma",
+        "icon": "D:\\GitHub\\parental-control\\icons\\Figma.ico",
+        "source": "External"
+    },
+    {
+        "name": "Git",
+        "publisher": "The Git Development Community",
+        "version": "2.49.0",
+        "install_location": "C:\\Program Files\\Git\\",
+        "icon": "D:\\GitHub\\parental-control\\icons\\git-for-windows.ico",
+        "source": "External"
+    },
+    {
+        "name": "GitHub Desktop",
+        "publisher": "GitHub, Inc.",
+        "version": "3.4.18",
+        "install_location": "C:\\Users\\jorge\\AppData\\Local\\GitHubDesktop",
+        "icon": "D:\\GitHub\\parental-control\\icons\\app.ico",
+        "source": "External"
+    },
+    {
+        "name": "HTTPie 2025.2.0",
+        "publisher": "HTTPie",
+        "version": "2025.2.0",
+        "install_location": "",
+        "icon": "D:\\GitHub\\parental-control\\icons\\HTTPie.ico",
+        "source": "External"
+    },
+    {
+        "name": "iCloud Outlook",
+        "publisher": "Apple Inc.",
+        "version": "15.3.0.138",
+        "install_location": "C:\\ProgramData\\Apple Inc\\iCloud\\Outlook\\",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "Java(TM) SE Development Kit 24 (64-bit)",
+        "publisher": "Oracle Corporation",
+        "version": "24.0.0.0",
+        "install_location": "C:\\Program Files\\Java\\jdk-24\\",
+        "icon": "D:\\GitHub\\parental-control\\icons\\java.ico",
+        "source": "External"
+    },
+    {
+        "name": "LM Studio 0.3.14",
+        "publisher": "LM Studio",
+        "version": "0.3.14",
+        "install_location": "",
+        "icon": "D:\\GitHub\\parental-control\\icons\\LM Studio.ico",
+        "source": "External"
+    },
+    {
+        "name": "Logi Options+",
+        "publisher": "Logitech",
+        "version": "1.88.697541",
+        "install_location": "",
+        "icon": "D:\\GitHub\\parental-control\\icons\\logioptionsplus.ico",
+        "source": "External"
+    },
+    {
+        "name": "Logi Plugin Service",
+        "publisher": "Logitech",
+        "version": "6.1.0.22061",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "Logi RightSightForWebcams 1.1.131",
+        "publisher": "Logitech",
+        "version": "1.1.131.0",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "MSTeams",
+        "publisher": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+        "version": "25044.2208.3471.2155",
+        "install_location": "C:\\Program Files\\WindowsApps\\MSTeams_25044.2208.3471.2155_x64__8wekyb3d8bbwe",
+        "icon": "D:\\GitHub\\parental-control\\icons\\blackdough.ico",
+        "source": "Microsoft Store"
+    },
+    {
+        "name": "Node.js",
+        "publisher": "Node.js Foundation",
+        "version": "23.10.0",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "Notion 4.7.2",
+        "publisher": "Notion Labs, Inc",
+        "version": "4.7.2",
+        "install_location": "",
+        "icon": "D:\\GitHub\\parental-control\\icons\\Notion.ico",
+        "source": "External"
+    },
+    {
+        "name": "novaPDF 9 Printer Driver",
+        "publisher": "Softland",
+        "version": "9.6.244",
+        "install_location": "C:\\Program Files\\Softland\\novaPDF 9\\",
+        "icon": "D:\\GitHub\\parental-control\\icons\\ProfileManager.ico",
+        "source": "External"
+    },
+    {
+        "name": "novaPDF 9 SDK COM (x64)",
+        "publisher": "Softland",
+        "version": "9.6.244",
+        "install_location": "C:\\Program Files\\Softland\\novaPDF 9\\SDK\\",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "OBS Studio",
+        "publisher": "OBS Project",
+        "version": "31.0.0",
+        "install_location": "",
+        "icon": "D:\\GitHub\\parental-control\\icons\\obs64.ico",
+        "source": "External"
+    },
+    {
+        "name": "Obsidian",
+        "publisher": "Obsidian",
+        "version": "1.8.9",
+        "install_location": "",
+        "icon": "D:\\GitHub\\parental-control\\icons\\Obsidian.ico",
+        "source": "External"
+    },
+    {
+        "name": "Oh My Posh",
+        "publisher": "Jan De Dobbeleer",
+        "version": "25.6.1",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "OpenAI.ChatGPT-Desktop",
+        "publisher": "CN=50BDFD77-8903-4850-9FFE-6E8522F64D5B",
+        "version": "1.2025.83.0",
+        "install_location": "C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2025.83.0_x64__2p2nqsd0c76g0",
+        "icon": "D:\\GitHub\\parental-control\\icons\\ChatGPT.ico",
+        "source": "Microsoft Store"
+    },
+    {
+        "name": "Oracle VirtualBox 7.1.6",
+        "publisher": "Oracle and/or its affiliates",
+        "version": "7.1.6",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "pnpm",
+        "publisher": "pnpm",
+        "version": "10.4.1",
+        "install_location": "C:\\Users\\jorge\\AppData\\Local\\Microsoft\\WinGet\\Packages\\pnpm.pnpm_Microsoft.Winget.Source_8wekyb3d8bbwe",
+        "icon": "D:\\GitHub\\parental-control\\icons\\pnpm.ico",
+        "source": "External"
+    },
+    {
+        "name": "PuTTY release 0.83 (64-bit)",
+        "publisher": "Simon Tatham",
+        "version": "0.83.0.0",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "Python 3.12.9 (64-bit)",
+        "publisher": "Python Software Foundation",
+        "version": "3.12.9150.0",
+        "install_location": "",
+        "icon": "D:\\GitHub\\parental-control\\icons\\python-3.12.9-amd64.ico",
+        "source": "External"
+    },
+    {
+        "name": "Python 3.12.9 Add to Path (64-bit)",
+        "publisher": "Python Software Foundation",
+        "version": "3.12.9150.0",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "Python 3.12.9 Core Interpreter (64-bit)",
+        "publisher": "Python Software Foundation",
+        "version": "3.12.9150.0",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "Python 3.12.9 Development Libraries (64-bit)",
+        "publisher": "Python Software Foundation",
+        "version": "3.12.9150.0",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "Python 3.12.9 Documentation (64-bit)",
+        "publisher": "Python Software Foundation",
+        "version": "3.12.9150.0",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "Python 3.12.9 Executables (64-bit)",
+        "publisher": "Python Software Foundation",
+        "version": "3.12.9150.0",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "Python 3.12.9 pip Bootstrap (64-bit)",
+        "publisher": "Python Software Foundation",
+        "version": "3.12.9150.0",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "Python 3.12.9 Standard Library (64-bit)",
+        "publisher": "Python Software Foundation",
+        "version": "3.12.9150.0",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "Python 3.12.9 Tcl/Tk Support (64-bit)",
+        "publisher": "Python Software Foundation",
+        "version": "3.12.9150.0",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "Python 3.12.9 Test Suite (64-bit)",
+        "publisher": "Python Software Foundation",
+        "version": "3.12.9150.0",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "Python Launcher",
+        "publisher": "Python Software Foundation",
+        "version": "3.12.9150.0",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "QuickLook",
+        "publisher": "Paddy Xu",
+        "version": "3.7.3.0",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "RealtekSemiconductorCorp.RealtekAudioControl",
+        "publisher": "CN=83564403-0B26-46B8-9D84-040F43691D31",
+        "version": "1.1.137.0",
+        "install_location": "C:\\Program Files\\WindowsApps\\RealtekSemiconductorCorp.RealtekAudioControl_1.1.137.0_x64__dt26b99r8h8gj",
+        "icon": null,
+        "source": "Microsoft Store"
+    },
+    {
+        "name": "ROBLOXCORPORATION.ROBLOX",
+        "publisher": "CN=6FEF9772-62F8-4C8B-8DE0-70F628846515",
+        "version": "2.666.608.0",
+        "install_location": "C:\\Program Files\\WindowsApps\\ROBLOXCORPORATION.ROBLOX_2.666.608.0_x64__55nm5eh3cm0pr",
+        "icon": null,
+        "source": "Microsoft Store"
+    },
+    {
+        "name": "Ruff",
+        "publisher": "Astral",
+        "version": "0.11.2",
+        "install_location": "C:\\Users\\jorge\\AppData\\Local\\Microsoft\\WinGet\\Packages\\astral-sh.ruff_Microsoft.Winget.Source_8wekyb3d8bbwe",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "SpotifyAB.SpotifyMusic",
+        "publisher": "CN=453637B3-4E12-4CDF-B0D3-2A3C863BF6EF",
+        "version": "1.260.564.0",
+        "install_location": "C:\\Program Files\\WindowsApps\\SpotifyAB.SpotifyMusic_1.260.564.0_x64__zpdnekdrzrea0",
+        "icon": "D:\\GitHub\\parental-control\\icons\\Spotify.ico",
+        "source": "Microsoft Store"
+    },
+    {
+        "name": "Steam",
+        "publisher": "Valve Corporation",
+        "version": "2.10.91.91",
+        "install_location": "",
+        "icon": "D:\\GitHub\\parental-control\\icons\\uninstall.ico",
+        "source": "External"
+    },
+    {
+        "name": "TeamViewer",
+        "publisher": "TeamViewer",
+        "version": "15.64.3.0",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "Telegram Desktop",
+        "publisher": "Telegram FZ-LLC",
+        "version": "5.13.1",
+        "install_location": "C:\\Users\\jorge\\AppData\\Roaming\\Telegram Desktop\\",
+        "icon": "D:\\GitHub\\parental-control\\icons\\Telegram.ico",
+        "source": "External"
+    },
+    {
+        "name": "TheBrowserCompany.Arc",
+        "publisher": "E=hello@thebrowser.company, CN=THE BROWSER COMPANY OF NEW YORK INC., O=THE BROWSER COMPANY OF NEW YORK INC., STREET=295 LAFAYETTE STREET, L=New York, S=New York, C=US, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US, SERIALNUMBER=7571542, OID.2.5.4.15=Private Organization",
+        "version": "1.46.1.21656",
+        "install_location": "C:\\Program Files\\WindowsApps\\TheBrowserCompany.Arc_1.46.1.21656_x64__ttt1ap7aakyb4",
+        "icon": null,
+        "source": "Microsoft Store"
+    },
+    {
+        "name": "Trae (User)",
+        "publisher": "SPRING (SG) PTE. LTD",
+        "version": "1.97.2",
+        "install_location": "C:\\Users\\jorge\\AppData\\Local\\Programs\\Trae\\",
+        "icon": "D:\\GitHub\\parental-control\\icons\\Trae.ico",
+        "source": "External"
+    },
+    {
+        "name": "UniGetUI",
+        "publisher": "Martí Climent",
+        "version": "3.1.8",
+        "install_location": "C:\\Program Files\\UniGetUI\\",
+        "icon": "D:\\GitHub\\parental-control\\icons\\UniGetUI.ico",
+        "source": "External"
+    },
+    {
+        "name": "uv",
+        "publisher": "Astral Software Inc.",
+        "version": "0.6.10",
+        "install_location": "C:\\Users\\jorge\\AppData\\Local\\Microsoft\\WinGet\\Packages\\astral-sh.uv_Microsoft.Winget.Source_8wekyb3d8bbwe",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "Wilcom EmbroideryStudio e4.2",
+        "publisher": "Wilcom",
+        "version": "22.0.94.20044",
+        "install_location": "D:\\Wilcom",
+        "icon": "D:\\GitHub\\parental-control\\icons\\wilcom1.ico",
+        "source": "External"
+    },
+    {
+        "name": "Wilcom PDF Printer 9",
+        "publisher": "Softland",
+        "version": "9.6.244",
+        "install_location": "C:\\ProgramData\\Softland\\novaPDF 9\\nPdfSdk9_319026",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "Wilcom Shell Extension",
+        "publisher": "Wilcom",
+        "version": "22.0.94.20045",
+        "install_location": "C:\\Program Files\\Wilcom\\Wilcom Shell Extension",
+        "icon": "D:\\GitHub\\parental-control\\icons\\wilcom1.ico",
+        "source": "External"
+    },
+    {
+        "name": "Windows SDK EULA",
+        "publisher": "Microsoft Corporations",
+        "version": "10.1.22621.3233",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    },
+    {
+        "name": "WinRAR 7.01 (64-bit)",
+        "publisher": "win.rar GmbH",
+        "version": "7.01.0",
+        "install_location": "C:\\Program Files\\WinRAR",
+        "icon": "D:\\GitHub\\parental-control\\icons\\WinRAR.ico",
+        "source": "External"
+    },
+    {
+        "name": "WinRAR.ShellExtension",
+        "publisher": "CN=win.rar GmbH, O=win.rar GmbH, L=Berlin, S=Berlin, C=DE, SERIALNUMBER=HRB 109885, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.1=Charlottenburg, OID.1.3.6.1.4.1.311.60.2.1.2=Berlin, OID.1.3.6.1.4.1.311.60.2.1.3=DE",
+        "version": "1.0.0.2",
+        "install_location": "C:\\Program Files\\WindowsApps\\WinRAR.ShellExtension_1.0.0.2_x64__d9ma7nkbkv4rp",
+        "icon": null,
+        "source": "Microsoft Store"
+    },
+    {
+        "name": "YouTube",
+        "publisher": "BraveSoftware\\Brave-Browser",
+        "version": "1.0",
+        "install_location": "",
+        "icon": "D:\\GitHub\\parental-control\\icons\\YouTube.ico",
+        "source": "External"
+    },
+    {
+        "name": "Zoom Workplace (64-bit)",
+        "publisher": "Zoom",
+        "version": "6.4.62735",
+        "install_location": "",
+        "icon": null,
+        "source": "External"
+    }
+]
