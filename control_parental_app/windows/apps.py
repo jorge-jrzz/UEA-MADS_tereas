@@ -2,9 +2,9 @@ import winreg
 import subprocess
 import json
 from pathlib import Path
-from typing import List, Dict
+from typing import List, Dict, Optional
 
-from icons import IconHandler  # Asegúrate de tener implementada esta clase
+from icons import IconHandler  
 
 
 class AppManager:
@@ -151,6 +151,9 @@ class AppManager:
             icon_path = self.icon_handler.save_icon(app)
             app["icon"] = str(Path(icon_path).resolve()) if icon_path else None
         return apps
+    
+
+
 
     def run(self) -> None:
         """
@@ -177,6 +180,45 @@ class AppManager:
             print(f"Archivo '{self.output_json}' generado correctamente.")
         except Exception as e:
             print(f"Error al guardar el archivo JSON: {e}")
+
+class blockManager:
+    @staticmethod
+    def get_process_name(app: Dict[str, str]) -> str:
+        """
+        Extrae el nombre del ejecutable de la aplicación.
+        Se utiliza la 'install_location' para determinar el archivo .exe que se debe cerrar.
+        """        
+        if app.get("install_location"):
+            exe_path = Path(app["install_location"])
+            if exe_path.is_file() and exe_path.suffix.lower() == ".exe":
+                return exe_path.name
+            elif exe_path.is_dir():
+                exe_files = list(exe_path.glob("*.exe"))
+                if exe_files:
+                    return exe_files[0].name
+        #como ultimo recurso, si el nombre de la aplicación parece ser un ejecutable, se utiliza
+        if app['name'] and app['name'].lower().endswith(".exe"):
+            return app['name']
+        return None
+    
+    def close_applications (apps: List[Dict[str, str]]) -> None:
+        for app in apps:
+            process_name = blockManager.get_process_name(app)
+            if process_name:
+                try:
+                    subprocess.run(["taskkill", "/IM", process_name, "/F"], capture_output=True, text=True, check=True)
+                    print(f"Se cerró la aplicación: {app['name']} (Proceso: {process_name})")
+                except subprocess.CalledProcessError as e:
+                    print(f"No se pudo cerrar la aplicación: {app['name']} (Proceso: {process_name}). Error: {e.stderr}")
+            else:
+                print(f"No se pudo determinar el proceso para la aplicación: {app['name']}")
+    
+    #Implementar lo de la base de datos
+    def save_blocked_apps(apps: List[Dict[str, str]]) -> None:
+        print("Guardando las aplicaciones bloqueadas en la base de datos (stub).")
+        # db.save(apps)
+            
+
 
 if __name__ == "__main__":
     app_manager = AppManager()
