@@ -2,6 +2,8 @@ import flet as ft
 import json
 from pathlib import Path
 import os
+from apps import blockManager
+
 
 class AppManager:
     def __init__(self):
@@ -264,7 +266,8 @@ def main(page: ft.Page):
                                     icon=ft.Icons.CHECK_CIRCLE_OUTLINED if not is_blacklisted else ft.Icons.BLOCK_OUTLINED,
                                     icon_color=ft.Colors.GREEN_400 if not is_blacklisted else ft.Colors.RED_400,
                                     tooltip="Permitida (click para bloquear)" if not is_blacklisted else "Bloqueada (click para permitir)",
-                                    on_click=lambda e, app_name=app['name']: toggle_app_blacklist(app_name)
+                                    on_click=lambda e, app_name=app['name']: toggle_app_blacklist(app_name, True if not is_blacklisted else False),
+                                    #on_click=lambda e: toggle_app_blacklist(app_name, True)
                                 )
                             ],
                             spacing=20,
@@ -350,7 +353,7 @@ def main(page: ft.Page):
                                         icon=ft.Icons.DELETE_OUTLINED,
                                         icon_color=ft.Colors.RED_400,
                                         tooltip="Quitar de lista negra",
-                                        on_click=lambda e, app_name=app_name: toggle_app_blacklist(app_name)
+                                        on_click=lambda e, app_name = app_name: toggle_app_blacklist(app_name)
                                     )
                                 ],
                                 spacing=20,
@@ -363,15 +366,25 @@ def main(page: ft.Page):
                 )
         page.update()
     
-    def toggle_app_blacklist(app_name):
+    def toggle_app_blacklist(app_name, blocked: bool = False):
         is_added, message = app_manager.toggle_blacklist(app_name)
         app_manager.save_blacklist()
+        app = None
+        for a in app_manager.apps:
+            if a['name'] == app_name:
+                app = a
+                break
         
         # Actualizar ambas vistas para mantener consistencia
         if apps_list_view.current:
             update_apps_list_view()
         if blacklist_view.current:
             update_blacklist_view()
+
+        if blocked and app:
+            print(f"Cerrando aplicación: {app['name']}")
+            print(app)
+            blockManager.close_applications([app])
         
         show_snackbar(message, ft.Colors.GREEN_400 if not is_added else ft.Colors.RED_400)
         page.update()

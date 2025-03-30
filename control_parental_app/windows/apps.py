@@ -9,7 +9,7 @@ from icons import IconHandler
 
 
 class AppManager:
-    def __init__(self, output_json: Path = Path("apps_gg.json")) -> None:
+    def __init__(self, output_json: Path = Path("apps.json")) -> None:
         """
         Inicializa la clase y prepara el manejador de iconos.
         """

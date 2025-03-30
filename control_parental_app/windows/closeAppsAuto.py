@@ -5,10 +5,10 @@ from apps import blockManager
 def closeAppsAuto():
     # 1. Cargamos las aplicaciones desde el JSON generado por apps.py
     try:
-        with open("apps_gg.json", "r", encoding="utf-8") as f:
+        with open("apps.json", "r", encoding="utf-8") as f:
             all_apps = json.load(f)
     except FileNotFoundError:
-        print("No se encontró el archivo apps_gg.json. Ejecuta primero apps.py para generarlo.")
+        print("No se encontró el archivo apps.json. Ejecuta primero apps.py para generarlo.")
         return
 
     # 2. Mostramos las aplicaciones enumeradas para que el usuario elija
@@ -37,6 +37,8 @@ def closeAppsAuto():
 
     # 5. Llamamos a close_applications con la lista de apps elegidas
     print("\nCerrando aplicaciones...\n")
+    print("Aplicaciones a cerrar:")
+    print(apps_a_cerrar)
     blockManager.close_applications(apps_a_cerrar)
 
 
