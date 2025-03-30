@@ -41,18 +41,14 @@ class IconHandler:
         """
         icon_path = Path(icon_display.split(",")[0].strip())
         mime_type, _ = guess_type(str(icon_path))
-        
-        new_path = None  # <-- Inicializamos
-        
+        new_path = None 
         if mime_type and mime_type.startswith("image"):
             new_path = shutil.copy(icon_path, self.icons_path)
         elif mime_type and mime_type.startswith("application"):
             new_path = self.extract_icon_from_exe(icon_path)
-        
         if new_path:
             return str(new_path)
         else:
-            
             print(f"No se pudo extraer icono de: {icon_path}")
             return None
     
@@ -96,7 +92,6 @@ class IconHandler:
             if not exe_path.is_file():
                 print(f"No existe el archivo: {exe_path}")
                 return None
-                
             extractor = IconExtractor(str(exe_path))
             new_icon_path = self.icons_path / f"{exe_path.stem}.ico"
             extractor.export_icon(str(new_icon_path), num=0)
