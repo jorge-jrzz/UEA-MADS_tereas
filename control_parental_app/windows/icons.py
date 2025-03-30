@@ -34,19 +34,27 @@ class IconHandler:
             print(f"Error al abrir el icono {icon_path}: {e}")
             return False
         
-    def extract_icon_from_registry(self, icon_display: str) -> str:
+    def extract_icon_from_registry(self, icon_display: str) -> Optional[str]:
         """
         Extrae el icono a partir del valor 'DisplayIcon' obtenido del registro.
         Se espera que icon_display tenga el formato "ruta,índice".
         """
-        # Extrae la ruta sin el sufijo (ej. "C:\Ruta\App.exe,0" -> "C:\Ruta\App.exe")
         icon_path = Path(icon_display.split(",")[0].strip())
         mime_type, _ = guess_type(str(icon_path))
+        
+        new_path = None  # <-- Inicializamos
+        
         if mime_type and mime_type.startswith("image"):
             new_path = shutil.copy(icon_path, self.icons_path)
         elif mime_type and mime_type.startswith("application"):
             new_path = self.extract_icon_from_exe(icon_path)
-        return str(new_path)
+        
+        if new_path:
+            return str(new_path)
+        else:
+            
+            print(f"No se pudo extraer icono de: {icon_path}")
+            return None
     
     def search_icon_file_in_dir(self, path: Path) -> Optional[Path]:
         """
@@ -85,13 +93,18 @@ class IconHandler:
         Guarda el icono en el directorio de iconos y retorna la ruta del archivo.
         """
         try:
+            if not exe_path.is_file():
+                print(f"No existe el archivo: {exe_path}")
+                return None
+                
             extractor = IconExtractor(str(exe_path))
             new_icon_path = self.icons_path / f"{exe_path.stem}.ico"
             extractor.export_icon(str(new_icon_path), num=0)
             return new_icon_path
-        except IconExtractorError:
+        except (IconExtractorError, FileNotFoundError):
             print(f"No se pudo extraer icono de: {exe_path}")
             return None
+
 
     def save_icon(self, app_data: Dict[str, str]) -> Optional[str]:
         """

@@ -1,6 +1,7 @@
 import winreg
 import subprocess
 import json
+import re
 from pathlib import Path
 from typing import List, Dict, Optional
 
@@ -183,41 +184,74 @@ class AppManager:
 
 class blockManager:
     @staticmethod
-    def get_process_name(app: Dict[str, str]) -> str:
-        """
-        Extrae el nombre del ejecutable de la aplicación.
-        Se utiliza la 'install_location' para determinar el archivo .exe que se debe cerrar.
-        """        
-        if app.get("install_location"):
-            exe_path = Path(app["install_location"])
+    def get_process_name(app: Dict[str, str]) -> Optional[str]:
+        install_location = app.get("install_location", "").strip()
+        name = app.get("name", "").strip()
+        
+        # Caso 1: Install_location válido
+        if install_location:
+            exe_path = Path(install_location)
             if exe_path.is_file() and exe_path.suffix.lower() == ".exe":
                 return exe_path.name
             elif exe_path.is_dir():
-                exe_files = list(exe_path.glob("*.exe"))
+                # Buscar .exe recursivamente y priorizar el más relevante
+                exe_files = list(exe_path.glob("**/*.exe"))
                 if exe_files:
-                    return exe_files[0].name
-        #como ultimo recurso, si el nombre de la aplicación parece ser un ejecutable, se utiliza
-        if app['name'] and app['name'].lower().endswith(".exe"):
-            return app['name']
+                    # Priorizar ejecutables con el mismo nombre que la app
+                    for exe in exe_files:
+                        if exe.stem.lower() == name.lower():
+                            return exe.name
+                    return exe_files[0].name  # Fallback: primer .exe encontrado
+        
+        # Caso 2: Derivar desde el nombre de la aplicación
+        if name:
+            # Limpiar nombre: eliminar versión, paréntesis, y espacios
+            clean_name = re.sub(r"[\(\).0-9\-]", "", name).strip()
+            # Formatear a lowercase y añadir .exe si es necesario
+            process_name = clean_name.replace(" ", "") + ".exe"
+            return process_name.lower()  # Windows no distingue mayúsculas
+        
         return None
-    
-    def close_applications (apps: List[Dict[str, str]]) -> None:
+
+    @staticmethod
+    def close_applications(apps: List[Dict[str, str]]) -> None:
         for app in apps:
             process_name = blockManager.get_process_name(app)
-            if process_name:
-                try:
-                    subprocess.run(["taskkill", "/IM", process_name, "/F"], capture_output=True, text=True, check=True)
-                    print(f"Se cerró la aplicación: {app['name']} (Proceso: {process_name})")
-                except subprocess.CalledProcessError as e:
-                    print(f"No se pudo cerrar la aplicación: {app['name']} (Proceso: {process_name}). Error: {e.stderr}")
-            else:
-                print(f"No se pudo determinar el proceso para la aplicación: {app['name']}")
-    
-    #Implementar lo de la base de datos
+            if not process_name:
+                print(f"Error: No se pudo obtener proceso para {app['name']}")
+                continue
+                
+            try:
+                # Ejecutar tasklist y capturar la salida
+                check_process = subprocess.run(
+                    ["tasklist", "/FI", f"IMAGENAME eq {process_name}"],
+                    capture_output=True, 
+                    text=True, 
+                    check=True
+                )
+                
+                # Usar regex para buscar el nombre exacto del proceso (en minúsculas)
+                if not re.search(r'\b' + re.escape(process_name.lower()) + r'\b', check_process.stdout.lower()):
+                    print(f"El proceso {process_name} no está en ejecución.")
+                    continue
+                    
+                # Forzar cierre del proceso
+                subprocess.run(
+                    ["taskkill", "/IM", process_name, "/F"],
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                    check=True
+                )
+                print(f"✅ Cerrado: {app['name']} ({process_name})")
+                
+            except subprocess.CalledProcessError as e:
+                print(f"❌ Error al cerrar {app['name']}: {e.stderr}")
+    # Implementar lo de la base de datos
+
+    @staticmethod
     def save_blocked_apps(apps: List[Dict[str, str]]) -> None:
         print("Guardando las aplicaciones bloqueadas en la base de datos (stub).")
         # db.save(apps)
-            
 
 
 if __name__ == "__main__":
