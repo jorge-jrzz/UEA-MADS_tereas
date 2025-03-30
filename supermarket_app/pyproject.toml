@@ -3,7 +3,7 @@ name = "project-1"
 version = "0.1.0"
 description = "Proyecto 1 de la UEA de Metodologías Agiles de Desarrollo de Software"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 dependencies = [
     "flask>=3.1.0",
     "flask-sqlalchemy>=3.1.1",
