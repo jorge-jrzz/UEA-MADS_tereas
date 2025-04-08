@@ -268,8 +268,8 @@ def main(page: ft.Page):
     def show_apps_list_view():
         current_view.current.controls = [build_apps_list_view()]
         page.update()
-        update_apps_list_view()
-        
+        update_apps_list_view()       
+          
     def on_search_changed(value):
         nonlocal search_term
         search_term = value.lower().strip()
@@ -369,10 +369,6 @@ def main(page: ft.Page):
         current_view.current.controls = [build_home_view()]
         page.update()
     
-    def show_apps_list_view():
-        current_view.current.controls = [build_apps_list_view()]
-        update_apps_list_view()
-        page.update()
     
     def show_blacklist_view():
         current_view.current.controls = [build_blacklist_view()]
@@ -388,62 +384,7 @@ def main(page: ft.Page):
             show_snackbar(message, ft.Colors.RED)
         page.update()
     
-    def update_apps_list_view():
-        if not apps_list_view.current:
-            return
-            
-        apps_list_view.current.controls.clear()
-        
-        if not app_manager.apps:
-            apps_list_view.current.controls.append(
-                ft.Text("No hay aplicaciones cargadas", italic=True)
-            )
-            return
-        
-        for app in app_manager.apps:
-            icon_path = app_manager.get_app_icon(app.get('icon'))
-            icon = ft.Icon(ft.Icons.APPS_OUTLINED) if not icon_path else ft.Image(
-                src=icon_path, 
-                width=32, 
-                height=32,
-                error_content=ft.Icon(ft.Icons.APPS_OUTLINED)
-            )
-            
-            is_blacklisted = app['name'] in app_manager.blacklist
-            
-            apps_list_view.current.controls.append(
-                ft.Card(
-                    content=ft.Container(
-                        content=ft.Row(
-                            controls=[
-                                icon,
-                                ft.Column(
-                                    controls=[
-                                        ft.Text(app['name'], weight=ft.FontWeight.BOLD),
-                                        ft.Text(f"Versión: {app['version']}", size=12),
-                                        ft.Text(f"Editor: {app['publisher']}", size=12),
-                                        ft.Text(f"Origen: {app['source']}", size=12),
-                                    ],
-                                    spacing=2,
-                                    expand=True
-                                ),
-                                ft.IconButton(
-                                    icon=ft.Icons.CHECK_CIRCLE_OUTLINED if not is_blacklisted else ft.Icons.BLOCK_OUTLINED,
-                                    icon_color=ft.Colors.GREEN_400 if not is_blacklisted else ft.Colors.RED_400,
-                                    tooltip="Permitida (click para bloquear)" if not is_blacklisted else "Bloqueada (click para permitir)",
-                                    on_click=lambda e, app_name=app['name']: toggle_app_blacklist(app_name, True if not is_blacklisted else False),
-                                    #on_click=lambda e: toggle_app_blacklist(app_name, True)
-                                )
-                            ],
-                            spacing=20,
-                            vertical_alignment=ft.CrossAxisAlignment.CENTER
-                        ),
-                        padding=10
-                    ),
-                    elevation=2
-                )
-            )
-        page.update()
+
     
     def update_blacklist_view():
         if not blacklist_view.current:
