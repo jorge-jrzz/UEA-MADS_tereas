@@ -4,6 +4,7 @@ from pathlib import Path
 import os
 import asyncio #para el escaneo del sistema
 from apps import blockManager, AppManager as SystemAppManager
+from db import import_apps_from_json
 
 
 class AppManager:
@@ -378,6 +379,7 @@ def main(page: ft.Page):
     def load_apps_from_file():
         success, message = app_manager.load_apps_from_json("apps.json")
         if success:
+            import_apps_from_json("apps.json")
             show_apps_list_view()
             show_snackbar(message)
         else:
@@ -504,6 +506,7 @@ def main(page: ft.Page):
 
         success, message = app_manager.load_apps_from_json("apps.json")
         if success:
+            import_apps_from_json("apps.json")
             show_results_view()
             show_snackbar("Aplicaciones del sistema cargadas correctamente", ft.Colors.GREEN)
         else:
