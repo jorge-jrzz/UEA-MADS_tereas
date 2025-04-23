@@ -322,7 +322,7 @@ def main(page: ft.Page):
                                 icon=ft.Icons.CHECK_CIRCLE_OUTLINED if not is_blacklisted else ft.Icons.BLOCK_OUTLINED,
                                 icon_color=ft.Colors.GREEN_400 if not is_blacklisted else ft.Colors.RED_400,
                                 tooltip="Permitida (click para bloquear)" if not is_blacklisted else "Bloqueada (click para permitir)",
-                                on_click=lambda e, name=app['name']: toggle_app_blacklist(name, not is_blacklisted)
+                                on_click=lambda e, name=app['name']: toggle_app_blacklist(name)
                             )
                         ], spacing=20, vertical_alignment=ft.CrossAxisAlignment.CENTER),
                         padding=10
@@ -474,27 +474,27 @@ def main(page: ft.Page):
                 )
         page.update()
     
-    def toggle_app_blacklist(app_name, blocked: bool = False):
+    def toggle_app_blacklist(app_name):
+    # 1. Cambia el estado y guarda
         is_added, message = app_manager.toggle_blacklist(app_name)
         app_manager.save_blacklist()
-        app = None
-        for a in app_manager.apps:
-            if a['name'] == app_name:
-                app = a
-                break
-        
-        # Actualizar ambas vistas para mantener consistencia
-        if apps_list_view.current:
+
+        # 2. Busca la app completa para poder cerrarla si hace falta
+        app = next((a for a in app_manager.apps if a['name'] == app_name), None)
+
+        # 3. Si acabamos de añadirla a la blacklist, la cerramos
+        if is_added and app:
+            print(f"[DEBUG] Cerrando aplicación: {app['name']}")
+            blockManager.close_applications([app])
+
+        # 4. Refresca ambas vistas (si están montadas)
+        if apps_list_view.current and apps_list_view.current.parent:
             update_apps_list_view()
-        if blacklist_view.current:
+        if blacklist_view.current and blacklist_view.current.parent:
             update_blacklist_view()
 
-        if blocked and app:
-            print(f"Cerrando aplicación: {app['name']}")
-            print(app)
-            blockManager.close_applications([app])
-        
-        show_snackbar(message, ft.Colors.GREEN_400 if not is_added else ft.Colors.RED_400)
+        # 5. Muestra snackbar y actualiza
+        show_snackbar(message, ft.Colors.RED_400 if is_added else ft.Colors.GREEN_400)
         page.update()
         
     async def load_system_apps(e):
